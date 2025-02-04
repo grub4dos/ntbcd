@@ -30,6 +30,6 @@ jobs:
     - name: Release
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: |
-        gh release create latest build/bcd -t "BCD" -p
+        gh release create latest build/bcd -t "BCD" --latest
       env:
         GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
