@@ -1,0 +1,35 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Run git checkout
+      uses: actions/checkout@v4
+
+    - name: Build
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: |
+        .\bcd.bat
+
+    - name: Delete old release
+      continue-on-error: true
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: |
+        gh release delete latest --cleanup-tag --yes
+      env:
+        GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+    - name: Release
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: |
+        gh release create latest build/bcd -t "BCD" -p
+      env:
+        GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
