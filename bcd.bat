@@ -50,15 +50,15 @@ bcdedit %bcd% /create %guidopt% /inherit OSLOADER
 bcdedit %bcd% /set %guidopt% detecthal true
 bcdedit %bcd% /set %guidopt% winpe true
 bcdedit %bcd% /set %guidopt% testsigning true
-REM bcdedit %bcd% /set %guidopt% flightsigning true
 bcdedit %bcd% /set %guidopt% pae default
 bcdedit %bcd% /set %guidopt% nx OptIn
 bcdedit %bcd% /set %guidopt% novesa true
 bcdedit %bcd% /set %guidopt% novga true
 bcdedit %bcd% /set %guidopt% nointegritychecks true
+REM bcdedit %bcd% /set %guidopt% flightsigning true
 REM bcdedit %bcd% /set %guidopt% integrityservices disable
 REM bcdedit %bcd% /set %guidopt% isolatedcontext true
-bcdedit %bcd% /set %guidopt% bootmenupolicy Legacy
+REM bcdedit %bcd% /set %guidopt% bootmenupolicy Legacy
 bcdedit %bcd% /set %guidopt% loadoptions %wincmd%
 bcdedit %bcd% /set %guidopt% inherit %guidhir%
 
