@@ -2,7 +2,7 @@ rd /s /q build
 md build
 cd build
 
-set bcd=/store bcd
+set bcd=/store bcd.dirty
 
 set guidwim={19260817-6666-8888-abcd-000000000000}
 set guidvhd={19260817-6666-8888-abcd-000000000001}
@@ -29,7 +29,7 @@ set wimfile=\0000000000000000000000000000000000000000000000000000000000000000000
 
 set vhdfile=\000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.vhd
 
-bcdedit /createstore bcd
+bcdedit /createstore bcd.dirty
 bcdedit %bcd% /create {bootmgr} /d "NTloader"
 bcdedit %bcd% /set {bootmgr} locale en-us
 bcdedit %bcd% /set {bootmgr} timeout 1
@@ -110,4 +110,9 @@ bcdedit %bcd% /set %guidwin% resumeobject %guidhib%
 bcdedit %bcd% /set {bootmgr} displayorder %guidwim% /addlast
 bcdedit %bcd% /default %guidwim%
 
+reg load HKLM\BCDFUCK bcd.dirty
+reg save HKLM\BCDFUCK bcd
+reg unload HKLM\BCDFUCK
+
 cd ..
+
