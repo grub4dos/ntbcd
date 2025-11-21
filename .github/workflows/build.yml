@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Run git checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
